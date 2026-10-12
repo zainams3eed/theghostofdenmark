@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 <title>The Ghost of Denmark</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 <style>
 
-/* ==========================
-   HAMLET DARK CASTLE THEME
-========================== */
+/* =========================
+   MAIN THEME
+========================= */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
@@ -24,23 +27,18 @@ body{
 
 margin:0;
 
-font-family:'Cinzel',serif;
+font-family:Cinzel,serif;
 
-color:#f5e6c8;
-
-text-align:center;
-
-overflow-x:hidden;
-
+color:#f4e6c2;
 
 background:
 
 linear-gradient(
-rgba(0,0,0,.80),
-rgba(0,0,0,.95)
+rgba(0,0,0,.65),
+rgba(0,0,0,.9)
 ),
 
-url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23");
+url("castle.jpg");
 
 background-size:cover;
 
@@ -48,33 +46,35 @@ background-position:center;
 
 min-height:100vh;
 
+overflow:hidden;
+
 }
 
 
-/* ==========================
-   ANIMATED FOG
-========================== */
+
+/* =========================
+   ATMOSPHERE
+========================= */
 
 
-body::before{
-
-content:"";
+.fog{
 
 position:fixed;
 
 width:200%;
 
-height:200%;
+height:100%;
 
 background:
 
 radial-gradient(
 ellipse,
-rgba(255,255,255,.08),
+rgba(255,255,255,.15),
 transparent 60%
 );
 
-animation:fog 20s infinite linear;
+
+animation:fogMove 20s infinite linear;
 
 pointer-events:none;
 
@@ -82,33 +82,109 @@ pointer-events:none;
 
 
 
-@keyframes fog{
+@keyframes fogMove{
+
 
 from{
 
-transform:translateX(-20%);
+transform:translateX(-30%);
 
 }
+
 
 to{
 
-transform:translateX(20%);
+transform:translateX(30%);
 
 }
 
+
+}
+
+
+
+.ghost{
+
+
+position:fixed;
+
+top:100px;
+
+right:100px;
+
+font-size:90px;
+
+opacity:.5;
+
+animation:
+
+ghostFloat 4s infinite;
+
+
+}
+
+
+@keyframes ghostFloat{
+
+
+50%{
+
+transform:translateY(-40px);
+
+}
+
+
 }
 
 
 
 
-/* ==========================
+.candle{
+
+
+position:fixed;
+
+bottom:20px;
+
+left:30px;
+
+font-size:70px;
+
+animation:
+
+flicker 1s infinite;
+
+
+}
+
+
+
+@keyframes flicker{
+
+
+50%{
+
+opacity:.5;
+
+}
+
+
+}
+
+
+
+
+
+/* =========================
    SCREENS
-========================== */
+========================= */
 
 
 .screen{
 
 display:none;
+
+height:100vh;
 
 padding:30px;
 
@@ -124,66 +200,72 @@ display:block;
 
 
 
-/* ==========================
-   TITLES
-========================== */
+/* =========================
+   TITLE
+========================= */
 
 
-h1{
+.title{
 
-font-size:55px;
+
+font-size:65px;
+
+text-align:center;
 
 color:#d4af37;
+
 
 text-shadow:
 
-0 0 20px black,
-0 0 40px #d4af37;
+0 0 20px black;
+
 
 }
 
 
 
-h2{
+.subtitle{
 
-color:#d4af37;
+text-align:center;
+
+font-size:25px;
 
 }
 
 
 
 
-/* ==========================
+/* =========================
    BUTTONS
-========================== */
+========================= */
 
 
 button{
 
-font-family:'Cinzel';
 
-font-size:20px;
+font-family:Cinzel;
 
-padding:15px 35px;
-
-margin:15px;
-
-border:none;
-
-border-radius:15px;
 
 background:
 
 linear-gradient(
-#e6c35c,
-#8b6508
+#d8b24c,
+#72500b
 );
+
+
+border:none;
+
+padding:15px 35px;
+
+margin:10px;
+
+border-radius:15px;
+
+font-size:20px;
 
 cursor:pointer;
 
-box-shadow:
-
-0 0 20px black;
 
 }
 
@@ -191,62 +273,9 @@ box-shadow:
 
 button:hover{
 
+
 transform:scale(1.08);
 
-}
-
-
-
-
-
-/* ==========================
-   GHOST ANIMATION
-========================== */
-
-
-.ghost{
-
-position:fixed;
-
-right:10%;
-
-top:15%;
-
-font-size:90px;
-
-opacity:.55;
-
-animation:
-
-floatGhost 4s infinite;
-
-}
-
-
-
-@keyframes floatGhost{
-
-
-0%{
-
-transform:translateY(0);
-
-}
-
-
-50%{
-
-transform:translateY(-40px);
-
-}
-
-
-100%{
-
-transform:translateY(0);
-
-}
-
 
 }
 
@@ -254,57 +283,9 @@ transform:translateY(0);
 
 
 
-/* ==========================
-   CANDLES
-========================== */
-
-
-.candle{
-
-position:fixed;
-
-bottom:20px;
-
-left:40px;
-
-font-size:70px;
-
-animation:flicker 1s infinite;
-
-}
-
-
-@keyframes flicker{
-
-
-0%{
-
-opacity:1;
-
-}
-
-
-50%{
-
-opacity:.5;
-
-}
-
-
-100%{
-
-opacity:1;
-
-}
-
-
-}
-
-
-
-/* ==========================
+/* =========================
    PANELS
-========================== */
+========================= */
 
 
 .panel{
@@ -312,71 +293,7 @@ opacity:1;
 
 background:
 
-#ead9a5;
-
-
-color:#2b1705;
-
-
-width:80%;
-
-margin:auto;
-
-padding:35px;
-
-
-border-radius:20px;
-
-
-border:
-
-8px solid #6b4513;
-
-
-box-shadow:
-
-0 0 40px black;
-
-
-}
-
-
-
-/* ==========================
-   CHARACTERS
-========================== */
-
-
-.characters{
-
-
-display:flex;
-
-justify-content:center;
-
-flex-wrap:wrap;
-
-gap:25px;
-
-
-}
-
-
-
-
-.character{
-
-
-width:200px;
-
-padding:20px;
-
-background:
-
-linear-gradient(
-#2b2118,
-#090705
-);
+rgba(20,10,5,.85);
 
 
 border:
@@ -387,28 +304,12 @@ border:
 border-radius:20px;
 
 
-cursor:pointer;
-
-
-transition:.4s;
-
-
-}
-
-
-
-.character:hover{
-
-
-transform:
-
-translateY(-15px)
-scale(1.05);
+padding:30px;
 
 
 box-shadow:
 
-0 0 30px #d4af37;
+0 0 30px black;
 
 
 }
@@ -416,10 +317,64 @@ box-shadow:
 
 
 
-.portrait{
+/* =========================
+   GAME LAYOUT
+========================= */
 
 
-font-size:80px;
+.gameLayout{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+250px 1fr 250px;
+
+
+height:85vh;
+
+
+gap:20px;
+
+
+}
+
+
+
+/* =========================
+   CHARACTER PANEL
+========================= */
+
+
+.characterPanel{
+
+
+background:
+
+rgba(0,0,0,.7);
+
+
+border:
+
+3px solid #d4af37;
+
+
+border-radius:20px;
+
+
+padding:20px;
+
+
+}
+
+
+.characterImage{
+
+
+font-size:100px;
+
 
 animation:
 
@@ -427,7 +382,6 @@ appear 1s;
 
 
 }
-
 
 
 @keyframes appear{
@@ -442,30 +396,17 @@ transform:scale(.2);
 }
 
 
-to{
-
-opacity:1;
-
-transform:scale(1);
-
-}
-
-
 }
 
 
 
 
-
-/* ==========================
-   GAME SCREEN
-========================== */
+.stat{
 
 
-#gameArea{
+font-size:20px;
 
-
-display:none;
+margin:15px;
 
 
 }
@@ -473,47 +414,53 @@ display:none;
 
 
 
-.stats{
+
+/* =========================
+   BOARD
+========================= */
 
 
-font-size:22px;
-
-margin:20px;
+.boardArea{
 
 
-}
+position:relative;
 
 
+background:
 
-#board{
-
-
-width:650px;
-
-margin:auto;
-
-display:grid;
-
-grid-template-columns:
-
-repeat(5,1fr);
+rgba(0,0,0,.35);
 
 
-gap:8px;
+border:
+
+5px solid #d4af37;
 
 
-background:#211307;
+border-radius:30px;
 
 
 padding:20px;
 
 
-border:
-
-8px solid #d4af37;
+}
 
 
-border-radius:20px;
+
+.board{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(8,1fr);
+
+
+gap:8px;
+
+
+height:100%;
 
 
 }
@@ -523,15 +470,9 @@ border-radius:20px;
 .space{
 
 
-height:100px;
-
-
 background:
 
-linear-gradient(
-#68421f,
-#241407
-);
+rgba(70,40,15,.9);
 
 
 border:
@@ -539,16 +480,21 @@ border:
 2px solid #d4af37;
 
 
+height:70px;
+
+
 display:flex;
-
-
-align-items:center;
 
 
 justify-content:center;
 
+align-items:center;
 
-font-size:13px;
+
+font-size:12px;
+
+
+border-radius:10px;
 
 
 }
@@ -556,17 +502,17 @@ font-size:13px;
 
 
 
-.player{
+.playerToken{
 
 
 background:
 
-#800000;
+red;
 
 
 box-shadow:
 
-0 0 25px red;
+0 0 20px red;
 
 
 }
@@ -574,47 +520,43 @@ box-shadow:
 
 
 
-/* ==========================
-   DICE
-========================== */
+
+/* =========================
+   RIGHT PANEL
+========================= */
 
 
-.diceBox{
+.rightPanel{
 
 
-position:fixed;
+background:
 
-top:20px;
-
-right:30px;
+rgba(0,0,0,.7);
 
 
-background:#ead9a5;
+border:
 
-
-color:#241407;
-
-
-padding:20px;
+3px solid #d4af37;
 
 
 border-radius:20px;
 
 
-border:5px solid #6b4513;
-
-
-font-size:25px;
+padding:20px;
 
 
 }
+
 
 
 
 .dice{
 
 
-font-size:70px;
+font-size:80px;
+
+
+text-align:center;
 
 
 }
@@ -626,26 +568,21 @@ font-size:70px;
 
 animation:
 
-roll .6s;
+rollDice .7s;
 
 
 }
 
 
 
-@keyframes roll{
-
-
-0%{
-
-transform:rotate(0deg);
-
-}
+@keyframes rollDice{
 
 
 100%{
 
-transform:rotate(720deg);
+transform:
+
+rotate(720deg);
 
 }
 
@@ -655,97 +592,64 @@ transform:rotate(720deg);
 
 
 
-/* ==========================
+/* =========================
    CARDS
-========================== */
+========================= */
+
+
+.cards{
+
+
+display:flex;
+
+
+gap:15px;
+
+
+justify-content:center;
+
+
+}
 
 
 .card{
 
 
-width:380px;
+background:
+
+#ead9a5;
 
 
-margin:20px auto;
+color:#201000;
 
 
-background:#ead9a5;
+padding:20px;
 
 
-color:#241407;
+border-radius:15px;
 
 
-padding:25px;
+width:220px;
 
 
 border:
 
-5px solid #6b4513;
-
-
-border-radius:20px;
-
-
-box-shadow:
-
-0 0 30px black;
-
-
-animation:
-
-cardAppear .5s;
+4px solid #6b4513;
 
 
 }
-
-
-
-@keyframes cardAppear{
-
-
-from{
-
-transform:
-
-rotateY(90deg);
-
-
-opacity:0;
-
-
-}
-
-
-to{
-
-
-transform:
-
-rotateY(0);
-
-
-opacity:1;
-
-
-}
-
-
-}
-
 
 
 
 </style>
 
-
 </head>
-
 
 
 <body>
 
 
-<!-- DECORATIONS -->
+<div class="fog"></div>
 
 
 <div class="ghost">
@@ -764,52 +668,32 @@ opacity:1;
 
 
 
-
-<!-- MUSIC -->
-
-<audio id="music" loop>
-
-<source src="music.mp3" type="audio/mpeg">
-
-</audio>
-
-
-
-
-
-<!-- TITLE SCREEN -->
+<!-- =========================
+ HOME
+========================= -->
 
 
 <div id="home" class="screen active">
 
 
-<h1>
+<h1 class="title">
 
-👻 The Ghost of Denmark
+👻 THE GHOST OF DENMARK
 
 </h1>
 
 
-<h2>
+<h2 class="subtitle">
 
 A Hamlet Mystery Board Game
 
 </h2>
 
 
-<p>
-
-The king is dead.
-
-Secrets haunt Elsinore Castle.
-
-Only the bravest can uncover the truth.
-
-</p>
+<div style="text-align:center">
 
 
-
-<button onclick="beginGame()">
+<button onclick="showRules()">
 
 Begin Game
 
@@ -819,11 +703,16 @@ Begin Game
 </div>
 
 
+</div>
 
 
 
 
-<!-- RULES -->
+
+
+<!-- =========================
+ RULES
+========================= -->
 
 
 <div id="rules" class="screen">
@@ -839,50 +728,46 @@ Begin Game
 </h1>
 
 
-
 <p>
 
-You will explore Elsinore Castle,
+Explore Elsinore Castle.
 
-collect evidence,
+Collect evidence.
 
-face consequences,
+Survive consequences.
 
-and make choices that change Denmark's fate.
+Expose the truth behind King Hamlet's murder.
 
 </p>
 
 
 <h2>
 
-How To Play
+Choose Mode
 
 </h2>
 
 
-<p>
 
-🎲 Roll the dice to move
+<button onclick="startSetup('single')">
 
-<br>
+👤 Single Player
 
-🔎 Collect evidence cards
-
-<br>
-
-⚠️ Survive consequences
-
-<br>
-
-🏰 Reach the final trial
-
-</p>
+</button>
 
 
 
-<button onclick="showCharacters()">
+<button onclick="startSetup('bot')">
 
-Choose Character
+🤖 Play Against Bot
+
+</button>
+
+
+
+<button onclick="startSetup('multi')">
+
+👥 Local Multiplayer
 
 </button>
 
@@ -897,7 +782,11 @@ Choose Character
 
 
 
-<!-- CHARACTER SELECT -->
+
+
+<!-- =========================
+ CHARACTER SELECT
+========================= -->
 
 
 <div id="characters" class="screen">
@@ -911,137 +800,42 @@ Choose Your Character
 
 
 
-<div class="characters">
+<div id="characterChoices">
 
 
+<button onclick="chooseCharacter('Hamlet')">
 
-<div class="character" onclick="selectCharacter('Hamlet')">
+🖤 Hamlet
 
-<div class="portrait">
+</button>
 
-🖤
 
-</div>
+<button onclick="chooseCharacter('Horatio')">
 
-<h2>
+📖 Horatio
 
-Hamlet
+</button>
 
-</h2>
 
-<p>
+<button onclick="chooseCharacter('Ophelia')">
 
-The Investigator
+🌹 Ophelia
 
-</p>
+</button>
 
-</div>
 
+<button onclick="chooseCharacter('Laertes')">
 
+⚔️ Laertes
 
+</button>
 
 
-<div class="character" onclick="selectCharacter('Claudius')">
+<button onclick="chooseCharacter('Claudius')">
 
-<div class="portrait">
+👑 Claudius
 
-👑
-
-</div>
-
-<h2>
-
-Claudius
-
-</h2>
-
-<p>
-
-The King
-
-</p>
-
-</div>
-
-
-
-
-
-<div class="character" onclick="selectCharacter('Ophelia')">
-
-<div class="portrait">
-
-🌹
-
-</div>
-
-<h2>
-
-Ophelia
-
-</h2>
-
-<p>
-
-The Protector
-
-</p>
-
-</div>
-
-
-
-
-
-<div class="character" onclick="selectCharacter('Horatio')">
-
-<div class="portrait">
-
-📖
-
-</div>
-
-<h2>
-
-Horatio
-
-</h2>
-
-<p>
-
-The Loyal Friend
-
-</p>
-
-</div>
-
-
-
-
-
-<div class="character" onclick="selectCharacter('Laertes')">
-
-<div class="portrait">
-
-⚔️
-
-</div>
-
-<h2>
-
-Laertes
-
-</h2>
-
-<p>
-
-The Warrior
-
-</p>
-
-</div>
-
-
+</button>
 
 
 </div>
@@ -1053,10 +847,75 @@ The Warrior
 
 
 
-<!-- GAME -->
+
+
+<!-- =========================
+ GAME
+========================= -->
 
 
 <div id="game" class="screen">
+
+
+<div class="gameLayout">
+
+
+
+<div class="characterPanel">
+
+
+<div id="portrait" class="characterImage">
+
+?
+
+</div>
+
+
+<h2 id="playerName">
+
+Player
+
+</h2>
+
+
+<div class="stat">
+
+🔎 Evidence:
+
+<span id="evidence">
+
+0
+
+</span>
+
+</div>
+
+
+
+<div class="stat">
+
+❤️ Trust:
+
+<span id="trust">
+
+5
+
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="boardArea">
 
 
 <h1>
@@ -1066,21 +925,36 @@ The Warrior
 </h1>
 
 
-<h2 id="chosenCharacter"></h2>
+<div id="board" class="board">
+
+</div>
+
+
+</div>
 
 
 
-<div class="diceBox">
 
-🎲 Last Roll
 
-<br>
 
-<span id="lastRoll">
 
-0
 
-</span>
+<div class="rightPanel">
+
+
+<h2>
+
+Current Turn
+
+</h2>
+
+
+<div id="turn">
+
+You
+
+</div>
+
 
 
 <div class="dice">
@@ -1090,57 +964,57 @@ The Warrior
 </div>
 
 
-</div>
-
-
-
-
-<div class="stats">
-
-Evidence:
-
-<span id="evidence">
-
-0
-
-</span>
-
-<br>
-
-
-Position:
-
-<span id="position">
-
-0
-
-</span>
-
-
-</div>
-
-
-
-
-<div id="board"></div>
-
-
-
-
 <button onclick="rollDice()">
 
-🎲 Roll Dice
+Roll Dice
 
 </button>
 
 
 
-<div id="cardArea">
+<h3>
+
+Last Roll:
+
+<span id="lastRoll">
+
+-
+
+</span>
+
+
+</h3>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<div class="cards">
 
 
 <div class="card">
 
-Your journey begins...
+🔎 Evidence Card
+
+</div>
+
+
+<div class="card">
+
+⚠️ Consequence
+
+</div>
+
+
+<div class="card">
+
+⚖️ Choice
 
 </div>
 
@@ -1154,54 +1028,96 @@ Your journey begins...
 
 
 
-<!-- END -->
 
-<div id="ending" class="screen">
+<audio id="music" loop>
 
+<source src="music.mp3">
 
-<div class="panel">
-
-
-<h1>
-
-🏆 The Fate of Denmark
-
-</h1>
+</audio>
 
 
-<p id="endingText"></p>
 
 
-<button onclick="location.reload()">
 
-Play Again
-
-</button>
-
-
-</div>
-
-
-</div>
 <script>
-
-
-/* ==========================
-   GAME VARIABLES
+   /* ==========================
+   GAME DATA
 ========================== */
 
 
-let player="";
+let gameMode="single";
 
-let position=0;
+let players=[];
 
-let evidence=0;
+let currentPlayer=0;
 
-let rollNumber=0;
+let position={};
+
+let evidence={};
+
+
+const characters={
+
+
+Hamlet:{
+
+icon:"🖤",
+
+ability:"Ghost's Warning - Find extra evidence"
+
+
+},
+
+
+Horatio:{
+
+icon:"📖",
+
+ability:"Truth Keeper - Protect clues"
+
+},
+
+
+Ophelia:{
+
+icon:"🌹",
+
+ability:"Compassion - Avoid consequences"
+
+},
+
+
+Laertes:{
+
+icon:"⚔️",
+
+ability:"Warrior - Move faster"
+
+},
+
+
+Claudius:{
+
+icon:"👑",
+
+ability:"Manipulation - Hide evidence"
+
+}
+
+
+};
 
 
 
-const rooms=[
+
+
+/* ==========================
+   BOARD LOCATIONS
+========================== */
+
+
+const locations=[
+
 
 "Castle Gate",
 
@@ -1209,19 +1125,77 @@ const rooms=[
 
 "Library",
 
+"Hallway",
+
 "Throne Room",
 
 "Queen's Chamber",
 
+"Secret Passage",
+
 "Ghost Tower",
 
-"Hamlet's Room",
-
-"Theater",
+"Royal Garden",
 
 "Chapel",
 
+"Play Room",
+
+"The Theater",
+
+"Guard Room",
+
+"Kitchen",
+
+"Royal Hall",
+
+"Ancient Library",
+
+"Hidden Room",
+
+"King's Chamber",
+
+"Balcony",
+
+"Castle Wall",
+
+"Dungeon",
+
+"Crypt",
+
 "Graveyard",
+
+"Forest Path",
+
+"Cliff Edge",
+
+"Old Bridge",
+
+"Village",
+
+"Market",
+
+"Ship Dock",
+
+"Tower Stairs",
+
+"Ghost Hall",
+
+"Mirror Room",
+
+"Poison Chamber",
+
+"Secret Vault",
+
+"Royal Archive",
+
+"Trial Entrance",
+
+"Final Court",
+
+"Throne Trial",
+
+"Truth Chamber",
 
 "Final Trial"
 
@@ -1229,21 +1203,16 @@ const rooms=[
 
 
 
+
+
+
+
 /* ==========================
-   START GAME
+   RULE SCREEN
 ========================== */
 
 
-function beginGame(){
-
-
-let music=document.getElementById("music");
-
-
-music.volume=.2;
-
-
-music.play().catch(()=>{});
+function showRules(){
 
 
 document.getElementById("home")
@@ -1262,7 +1231,15 @@ document.getElementById("rules")
 
 
 
-function showCharacters(){
+/* ==========================
+   SELECT MODE
+========================== */
+
+
+function startSetup(mode){
+
+
+gameMode=mode;
 
 
 document.getElementById("rules")
@@ -1281,15 +1258,89 @@ document.getElementById("characters")
 
 
 
+
 /* ==========================
-   CHARACTER SELECTION
+   CHARACTER SELECT
 ========================== */
 
 
-function selectCharacter(name){
+function chooseCharacter(name){
 
 
-player=name;
+players=[];
+
+
+players.push(name);
+
+
+
+if(gameMode==="bot"){
+
+
+let bots=[
+
+"Claudius",
+"Laertes",
+"Ophelia",
+"Horatio"
+
+];
+
+
+let bot=
+
+bots[Math.floor(Math.random()*bots.length)];
+
+
+players.push(bot);
+
+
+}
+
+
+
+if(gameMode==="multi"){
+
+
+let second=
+
+prompt(
+
+"Player 2 choose Hamlet, Horatio, Ophelia, Laertes, or Claudius"
+
+);
+
+
+if(!second){
+
+second="Horatio";
+
+}
+
+
+players.push(second);
+
+
+}
+
+
+
+
+players.forEach(p=>{
+
+
+position[p]=0;
+
+
+evidence[p]=0;
+
+
+});
+
+
+
+currentPlayer=0;
+
 
 
 document.getElementById("characters")
@@ -1301,60 +1352,190 @@ document.getElementById("game")
 
 
 
-document.getElementById("chosenCharacter")
-.innerHTML=
-
-"Your Character: "+name;
+loadPlayer();
 
 
 
 createBoard();
 
 
+
 }
 
 
 
 
 
+
+
 /* ==========================
-   CREATE BOARD
+   LOAD PLAYER DISPLAY
+========================== */
+
+
+function loadPlayer(){
+
+
+
+let name=
+
+players[currentPlayer];
+
+
+
+document.getElementById("playerName")
+.innerHTML=name;
+
+
+
+document.getElementById("portrait")
+.innerHTML=
+
+characters[name].icon;
+
+
+
+document.getElementById("turn")
+.innerHTML=
+
+name+"'s turn";
+
+
+
+document.getElementById("evidence")
+.innerHTML=
+
+evidence[name];
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+   CREATE CASTLE BOARD
 ========================== */
 
 
 function createBoard(){
 
 
-let board=document.getElementById("board");
+
+let board=
+
+document.getElementById("board");
+
 
 
 board.innerHTML="";
 
 
-rooms.forEach((room,index)=>{
+
+locations.forEach((place,index)=>{
 
 
-let space=document.createElement("div");
+let space=
+
+document.createElement("div");
 
 
 space.className="space";
 
 
-space.id="space"+index;
+space.id=
+
+"space"+index;
 
 
-space.innerHTML=room;
+
+space.innerHTML=
+
+place;
 
 
 
 board.appendChild(space);
 
 
+
 });
 
 
 
-updateBoard();
+updateTokens();
+
+
+}
+
+
+
+
+
+
+
+
+
+
+/* ==========================
+   TOKEN SYSTEM
+========================== */
+
+
+function updateTokens(){
+
+
+
+document.querySelectorAll(".space")
+.forEach(space=>{
+
+
+space.innerHTML=
+
+space.innerHTML.split("<br>")[0];
+
+
+});
+
+
+
+players.forEach((player,index)=>{
+
+
+let pos=
+
+position[player];
+
+
+let box=
+
+document.getElementById(
+
+"space"+pos
+
+);
+
+
+
+if(box){
+
+
+box.innerHTML+=
+
+"<br>🟣 "+player;
+
+
+}
+
+
+
+});
 
 
 
@@ -1365,28 +1546,53 @@ updateBoard();
 
 
 
+
+
+
 /* ==========================
-   DICE ROLL
+   TURN CHANGE
 ========================== */
 
 
-function rollDice(){
+function nextTurn(){
 
 
 
-let dice=document.querySelector(".dice");
+currentPlayer++;
 
 
 
-dice.classList.remove("rollAnimation");
+if(currentPlayer>=players.length){
+
+
+currentPlayer=0;
+
+
+}
 
 
 
-void dice.offsetWidth;
+loadPlayer();
+
+
+}
 
 
 
-dice.classList.add("rollAnimation");
+
+
+/* ==========================
+   BOT TURN
+========================== */
+
+
+function botTurn(){
+
+
+
+let bot=
+
+players[currentPlayer];
 
 
 
@@ -1394,11 +1600,100 @@ setTimeout(()=>{
 
 
 
-let roll=Math.floor(Math.random()*6)+1;
+let roll=
+
+Math.floor(Math.random()*6)+1;
 
 
 
-rollNumber=roll;
+position[bot]+=roll;
+
+
+
+if(position[bot]>=39){
+
+
+position[bot]=39;
+
+
+}
+
+
+
+updateTokens();
+
+
+
+drawCard();
+
+
+
+nextTurn();
+
+
+
+},1200);
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+   CHARACTER EFFECTS
+========================== */
+
+
+function abilityMessage(){
+
+
+let player=
+
+players[currentPlayer];
+
+
+
+return characters[player].ability;
+
+
+}
+   /* ==========================
+   DICE SYSTEM
+========================== */
+
+
+function rollDice(){
+
+
+
+let dice=
+
+document.querySelector(".dice");
+
+
+
+dice.classList.remove("rollAnimation");
+
+void dice.offsetWidth;
+
+
+dice.classList.add("rollAnimation");
+
+
+
+
+setTimeout(()=>{
+
+
+
+let roll=
+
+Math.floor(Math.random()*6)+1;
 
 
 
@@ -1407,26 +1702,30 @@ document.getElementById("lastRoll")
 
 
 
-position+=roll;
+let player=
+
+players[currentPlayer];
 
 
 
-if(position>=10){
+position[player]+=roll;
 
 
-position=10;
+
+
+if(position[player]>=39){
+
+
+position[player]=39;
 
 
 }
 
 
 
-document.getElementById("position")
-.innerHTML=position;
 
 
-
-updateBoard();
+updateTokens();
 
 
 
@@ -1434,53 +1733,12 @@ drawCard();
 
 
 
-},600);
+},700);
 
 
 
 }
 
-
-
-
-
-
-/* ==========================
-   MOVE PLAYER
-========================== */
-
-
-function updateBoard(){
-
-
-
-document.querySelectorAll(".space")
-.forEach(space=>{
-
-
-space.classList.remove("player");
-
-
-});
-
-
-
-let current=
-
-document.getElementById("space"+position);
-
-
-
-if(current){
-
-current.classList.add("player");
-
-
-}
-
-
-
-}
 
 
 
@@ -1489,7 +1747,7 @@ current.classList.add("player");
 
 
 /* ==========================
-   CARD SYSTEM
+   CARD DATABASE
 ========================== */
 
 
@@ -1497,61 +1755,173 @@ current.classList.add("player");
 const evidenceCards=[
 
 
-"The Ghost reveals that Claudius knows more than he admits.",
+{
+
+title:"👻 The Ghost's Warning",
+
+text:"The spirit reveals that Claudius betrayed King Hamlet.",
+
+points:1
+
+},
 
 
-"You discover a hidden poison bottle near the throne.",
+{
+
+title:"🧪 The Poison Bottle",
+
+text:"A hidden bottle connects Claudius to the murder.",
+
+points:1
+
+},
 
 
-"A secret letter exposes the king's suspicious actions.",
+{
+
+title:"📜 Secret Letter",
+
+text:"A letter reveals suspicious royal plans.",
+
+points:1
+
+},
 
 
-"The Mousetrap performance makes Claudius react strangely.",
+{
+
+title:"🎭 The Mousetrap",
+
+text:"Claudius reacts strangely during Hamlet's play.",
+
+points:1
+
+},
 
 
-"You find evidence connecting Claudius to the murder."
+{
+
+title:"👑 Royal Evidence",
+
+text:"You discover proof hidden inside the castle.",
+
+points:2
+
+}
+
 
 ];
+
+
 
 
 
 const consequenceCards=[
 
 
-"⚠️ Claudius becomes suspicious of your investigation.",
+{
+
+title:"⚠️ Claudius Watches",
+
+text:"The king becomes suspicious of your actions.",
+
+effect:-1
+
+},
 
 
-"⚠️ Rumors spread around Elsinore Castle.",
+{
+
+title:"⚔️ Laertes Arrives",
+
+text:"A new conflict threatens your mission.",
+
+effect:0
+
+},
 
 
-"⚠️ Laertes challenges your choices.",
+{
+
+title:"🌑 Dark Rumors",
+
+text:"People begin questioning your loyalty.",
+
+effect:-1
+
+},
 
 
-"⚠️ The court begins questioning your loyalty."
+{
+
+title:"🕯️ Ghostly Encounter",
+
+text:"The castle becomes more dangerous.",
+
+effect:-1
+
+}
+
 
 ];
+
+
+
 
 
 
 const choiceCards=[
 
 
-"⚖️ The Ghost demands revenge. Do you seek justice or forgiveness?",
+{
+
+title:"⚖️ Revenge or Justice?",
+
+text:"The Ghost demands action. Choose your path."
+
+},
 
 
-"⚖️ Ophelia asks if she can trust you.",
+{
+
+title:"🌹 Trust Ophelia?",
+
+text:"Your decision changes your relationship."
+
+},
 
 
-"⚖️ Gertrude asks you to protect the kingdom.",
+{
+
+title:"📖 Tell Horatio the Truth?",
+
+text:"A secret shared may become protection."
+
+},
 
 
-"⚖️ Horatio asks you to reveal your plan."
+{
+
+title:"👑 Challenge the King?",
+
+text:"A dangerous choice approaches."
+
+}
+
 
 ];
 
 
 
 
+
+
+
+
+
+/* ==========================
+   DRAW CARD
+========================== */
 
 
 
@@ -1559,75 +1929,49 @@ function drawCard(){
 
 
 
-let area=document.getElementById("cardArea");
+let area=
+
+document.querySelector(".cards");
 
 
 
-let type=Math.floor(Math.random()*3);
+let random=
+
+Math.floor(Math.random()*3);
 
 
 
-let text="";
+let card;
 
 
 
-if(type==0){
+let player=
+
+players[currentPlayer];
 
 
-text=
 
-"🔎 EVIDENCE CARD<br><br>"+
+
+
+if(random===0){
+
+
+
+card=
 
 evidenceCards[
 
-Math.floor(Math.random()*evidenceCards.length)
+Math.floor(
 
-];
+Math.random()*evidenceCards.length
 
-
-evidence++;
-
-
-}
-
-
-
-else if(type==1){
-
-
-text=
-
-"⚠️ CONSEQUENCE CARD<br><br>"+
-
-consequenceCards[
-
-Math.floor(Math.random()*consequenceCards.length)
+)
 
 ];
 
 
 
-}
-
-
-
-
-else{
-
-
-text=
-
-"⚖️ CHOICE CARD<br><br>"+
-
-choiceCards[
-
-Math.floor(Math.random()*choiceCards.length)
-
-];
-
-
-
-}
+evidence[player]+=card.points;
 
 
 
@@ -1638,12 +1982,32 @@ area.innerHTML=
 
 <div class="card">
 
-${text}
+<h3>
 
-<br><br>
+🔎 EVIDENCE FOUND
 
-Evidence:
-${evidence}/5
+</h3>
+
+
+<h2>
+
+${card.title}
+
+</h2>
+
+
+<p>
+
+${card.text}
+
+</p>
+
+
+<p>
+
++${card.points} Evidence
+
+</p>
 
 
 </div>
@@ -1653,14 +2017,77 @@ ${evidence}/5
 
 
 
-document.getElementById("evidence")
-.innerHTML=evidence;
+
+}
 
 
 
 
 
-checkWin();
+else if(random===1){
+
+
+
+card=
+
+consequenceCards[
+
+Math.floor(
+
+Math.random()*consequenceCards.length
+
+)
+
+];
+
+
+
+
+evidence[player]+=card.effect;
+
+
+
+if(evidence[player]<0){
+
+evidence[player]=0;
+
+}
+
+
+
+
+area.innerHTML=
+
+`
+
+<div class="card">
+
+
+<h3>
+
+⚠️ CONSEQUENCE
+
+</h3>
+
+
+<h2>
+
+${card.title}
+
+</h2>
+
+
+<p>
+
+${card.text}
+
+</p>
+
+
+</div>
+
+`;
+
 
 
 
@@ -1671,16 +2098,277 @@ checkWin();
 
 
 
+
+else{
+
+
+
+card=
+
+choiceCards[
+
+Math.floor(
+
+Math.random()*choiceCards.length
+
+)
+
+];
+
+
+
+
+area.innerHTML=
+
+`
+
+<div class="card">
+
+
+<h3>
+
+⚖️ CHOICE
+
+</h3>
+
+
+<h2>
+
+${card.title}
+
+</h2>
+
+
+<p>
+
+${card.text}
+
+</p>
+
+
+<button onclick="choiceResult(1)">
+
+Choose
+
+</button>
+
+
+</div>
+
+`;
+
+
+
+}
+
+
+
+
+
+document.getElementById("evidence")
+.innerHTML=
+
+evidence[player];
+
+
+
+checkFinalTrial();
+
+
+
+if(gameMode==="bot" && currentPlayer===1){
+
+
+botTurn();
+
+
+}
+
+else{
+
+
+nextTurn();
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
 /* ==========================
-   FINAL TRIAL
+   CHOICE RESULT
 ========================== */
 
 
-function checkWin(){
+
+function choiceResult(choice){
+
+
+let player=
+
+players[currentPlayer];
 
 
 
-if(position==10 && evidence>=5){
+evidence[player]++;
+
+
+
+document.querySelector(".cards")
+.innerHTML=
+
+`
+
+<div class="card">
+
+<h2>
+
+Your choice changed Denmark.
+
+</h2>
+
+<p>
+
+Evidence increased.
+
+</p>
+
+
+</div>
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+   FINAL TRIAL CHECK
+========================== */
+
+
+function checkFinalTrial(){
+
+
+
+players.forEach(player=>{
+
+
+if(position[player]===39){
+
+
+
+if(evidence[player]>=5){
+
+
+endGame(player);
+
+
+}
+
+
+
+}
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+   END GAME
+========================== */
+
+
+function endGame(winner){
+
+
+
+document.getElementById("game")
+.classList.remove("active");
+
+
+
+document.getElementById("ending")
+.classList.add("active");
+
+
+
+document.getElementById("endingText")
+.innerHTML=
+
+
+`
+
+🏆 ${winner} has reached the Final Trial!
+
+<br><br>
+
+The evidence reveals:
+
+Claudius murdered King Hamlet using poison.
+
+<br><br>
+
+The fate of Denmark has changed forever.
+
+`;
+
+
+
+}
+   the-ghost-of-denmark
+│
+├── index.html
+├── castle.jpg
+├── music.mp3
+├── dice.mp3
+├── card.mp3
+├── ghost.mp3
+│
+├── hamlet.png
+├── claudius.png
+├── ophelia.png
+├── horatio.png
+└── laertes.png
+   /* ==========================
+   FINAL TRIAL SYSTEM
+========================== */
+
+
+let finalAnswers=0;
+
+
+
+function startFinalTrial(player){
 
 
 document.getElementById("game")
@@ -1692,52 +2380,144 @@ document.getElementById("ending")
 
 
 
+document.getElementById("endingText")
+.innerHTML=
+
+`
+
+<h2>
+👻 The Final Trial of Denmark
+</h2>
+
+
+<p>
+
+The Ghost appears before you.
+
+</p>
+
+
+<p>
+
+"Who truly caused Denmark's downfall?"
+
+</p>
+
+
+
+<button onclick="trialAnswer('Claudius')">
+
+👑 Claudius
+
+</button>
+
+
+<button onclick="trialAnswer('Laertes')">
+
+⚔️ Laertes
+
+</button>
+
+
+
+<button onclick="trialAnswer('Polonius')">
+
+📜 Polonius
+
+</button>
+
+
+`;
+
+
+
+}
+
+
+
+
+
+/* ==========================
+   TRIAL ANSWERS
+========================== */
+
+
+function trialAnswer(answer){
+
+
+
+let player=
+
+players[currentPlayer];
+
+
+
 let result="";
 
 
 
-if(player=="Claudius"){
+if(answer==="Claudius"){
+
+
+
+finalAnswers++;
+
+
+
+if(evidence[player]>=5){
 
 
 result=
 
-"You protected your throne, but Denmark will remember your secrets.";
+`
+
+🏆 TRUE ENDING
+
+<br><br>
+
+You exposed Claudius and revealed the murder of King Hamlet.
+
+<br><br>
+
+Denmark learns the truth.
+
+The Ghost can finally rest.
+
+👻
+
+`;
+
+
+
+}
+
+else{
+
+
+result=
+
+`
+
+⚠️ PARTIAL ENDING
+
+<br><br>
+
+You suspected Claudius...
+
+but you did not collect enough evidence.
+
+The truth remains hidden.
+
+`;
+
 
 
 }
 
 
-else if(player=="Ophelia"){
-
-
-result=
-
-"You saved the people of Denmark and prevented complete tragedy.";
-
 
 }
 
-
-else if(player=="Horatio"){
-
-
-result=
-
-"You preserved the truth of Hamlet's story for future generations.";
-
-
-}
-
-
-else if(player=="Laertes"){
-
-
-result=
-
-"You restored your family's honor, but at a great cost.";
-
-
-}
 
 
 else{
@@ -1745,7 +2525,20 @@ else{
 
 result=
 
-"You uncovered Claudius' crime and revealed the truth behind King Hamlet's death.";
+`
+
+💀 TRAGIC ENDING
+
+<br><br>
+
+Your accusation was wrong.
+
+Denmark falls deeper into chaos.
+
+The Ghost disappears into the darkness.
+
+`;
+
 
 
 }
@@ -1754,22 +2547,169 @@ result=
 
 
 document.getElementById("endingText")
-.innerHTML=result;
+.innerHTML=
+
+result+
+
+`
+
+<br><br>
+
+<button onclick="restartGame()">
+
+Play Again
+
+</button>
+
+`;
 
 
 
 }
 
 
+
+
+
+
+
+/* ==========================
+   WIN CONDITION UPDATE
+========================== */
+
+
+function checkFinalTrial(){
+
+
+players.forEach(player=>{
+
+
+
+if(position[player]>=39){
+
+
+
+if(evidence[player]>=5){
+
+
+startFinalTrial(player);
+
+
+
+}
+
+else{
+
+
+document.querySelector(".cards")
+.innerHTML=
+
+`
+
+<div class="card">
+
+<h2>
+⚠️ You reached the Trial
+</h2>
+
+
+<p>
+
+You need more evidence before confronting the king.
+
+</p>
+
+
+</div>
+
+`;
+
+
+
+}
+
+
+
+}
+
+
+
+});
+
+
+
 }
 
 
 
 
 
-</script>
 
 
-</body>
+/* ==========================
+   RESTART
+========================== */
 
-</html>
+
+function restartGame(){
+
+
+
+location.reload();
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+   EXTRA VISUAL EFFECTS
+========================== */
+
+
+document.addEventListener(
+
+"click",
+
+function(){
+
+
+
+let clickSound=
+
+new Audio("card.mp3");
+
+
+
+clickSound.volume=.15;
+
+
+clickSound.play();
+
+
+
+}
+
+);
+
+
+
+
+
+
+
+/* ==========================
+   INITIAL MESSAGE
+========================== */
+
+
+console.log(
+
+"The Ghost of Denmark has awakened..."
+
+);
